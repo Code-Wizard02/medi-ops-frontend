@@ -3,14 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - sudo yum install -y xz curl git
-        - if [ ! -d "flutter" ]; then git clone https://github.com/flutter/flutter.git -b stable; fi
-        - export PATH="$PATH:`pwd`/flutter/bin"
-        - flutter precache
-        - flutter clean
+        - FLUTTER_HOME="$HOME/flutter"
+        - if [ ! -d "$FLUTTER_HOME" ]; then git clone https://github.com/flutter/flutter.git -b stable "$FLUTTER_HOME"; fi
+        - export PATH="$PATH:$FLUTTER_HOME/bin"
+        - flutter precache --web
         - flutter pub get
     build:
       commands:
+        - export PATH="$PATH:$HOME/flutter/bin"
         - flutter build web --release --dart-define=API_BASE_URL=$API_BASE_URL
   artifacts:
     baseDirectory: build/web
@@ -18,5 +18,5 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - '.pub-cache/**/*'
-      - 'flutter/**/*'
+      - '$HOME/flutter/**/*'
+      - '$HOME/.pub-cache/**/*'
