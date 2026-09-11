@@ -3,7 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - yum install -y xz curl git
+        - sudo yum install -y xz curl git
         - if [ ! -d "flutter" ]; then git clone https://github.com/flutter/flutter.git -b stable; fi
         - export PATH="$PATH:`pwd`/flutter/bin"
         - flutter precache
