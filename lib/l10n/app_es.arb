@@ -7,6 +7,19 @@
     "signUpSubtitle": "Regístrate para comenzar con Mediops",
     "signInTab": "Ingresar",
     "signUpTab": "Registrarse",
+    "verifyEmailTitle": "Verifica tu correo electrónico",
+    "verifyEmailSubtitle": "Hemos enviado un código a {email}",
+    "@verifyEmailSubtitle": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "privacyNoticeTitle": "Aviso de Privacidad",
+    "privacyNoticeCheckbox": "He leído y acepto el",
+    "privacyNoticeLink": "Aviso de Privacidad",
+    "privacyNoticeRequired": "Debes aceptar el aviso de privacidad para continuar",
     "emailLabel": "Correo Electrónico",
     "emailHint": "nombre@empresa.com",
     "emailErrorEmpty": "Ingresa un correo electrónico válido",

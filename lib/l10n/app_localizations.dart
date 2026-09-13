@@ -223,6 +223,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'OR CONTINUE WITH'**
   String get orContinueWith;
+
+  /// No description provided for @verifyEmailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your email'**
+  String get verifyEmailTitle;
+
+  /// No description provided for @verifyEmailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We have sent a code to {email}'**
+  String verifyEmailSubtitle(String email);
+
+  /// No description provided for @privacyNoticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Notice'**
+  String get privacyNoticeTitle;
+
+  /// No description provided for @privacyNoticeCheckbox.
+  ///
+  /// In en, this message translates to:
+  /// **'I have read and accept the'**
+  String get privacyNoticeCheckbox;
+
+  /// No description provided for @privacyNoticeLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Notice'**
+  String get privacyNoticeLink;
+
+  /// No description provided for @privacyNoticeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'You must accept the privacy notice to continue'**
+  String get privacyNoticeRequired;
 }
 
 class _AppLocalizationsDelegate

@@ -6,6 +6,7 @@ import '../../application/use_cases/get_current_session.dart';
 import '../../application/use_cases/sign_in.dart';
 import '../../application/use_cases/sign_out.dart';
 import '../../domain/entities/auth_session.dart';
+import '../../domain/errors/auth_failure.dart';
 import '../../domain/value_objects/email.dart';
 import '../../domain/value_objects/password.dart';
 import 'auth_state.dart';
@@ -60,7 +61,11 @@ class AuthCubit extends Cubit<AuthState> {
       case Success<AuthSession>(value: final session):
         emit(Authenticated(session));
       case FailureResult<AuthSession>(failure: final failure):
-        emit(AuthFailureState(failure.message));
+        if (failure is AccountNotVerifiedFailure) {
+          emit(AccountNotVerified(failure.email));
+        } else {
+          emit(AuthFailureState(failure.message));
+        }
     }
   }
 

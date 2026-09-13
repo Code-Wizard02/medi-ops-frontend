@@ -20,5 +20,18 @@
     "continueButton": "Continue",
     "signUpButton": "Sign Up",
     "registrationSuccess": "Registration successful. Check your email to verify your account.",
-    "orContinueWith": "OR CONTINUE WITH"
+    "orContinueWith": "OR CONTINUE WITH",
+    "verifyEmailTitle": "Verify your email",
+    "verifyEmailSubtitle": "We have sent a code to {email}",
+    "@verifyEmailSubtitle": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "privacyNoticeTitle": "Privacy Notice",
+    "privacyNoticeCheckbox": "I have read and accept the",
+    "privacyNoticeLink": "Privacy Notice",
+    "privacyNoticeRequired": "You must accept the privacy notice to continue"
 }

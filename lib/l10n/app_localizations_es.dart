@@ -73,4 +73,25 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get orContinueWith => 'O CONTINUAR CON';
+
+  @override
+  String get verifyEmailTitle => 'Verifica tu correo electrónico';
+
+  @override
+  String verifyEmailSubtitle(String email) {
+    return 'Hemos enviado un código a $email';
+  }
+
+  @override
+  String get privacyNoticeTitle => 'Aviso de Privacidad';
+
+  @override
+  String get privacyNoticeCheckbox => 'He leído y acepto el';
+
+  @override
+  String get privacyNoticeLink => 'Aviso de Privacidad';
+
+  @override
+  String get privacyNoticeRequired =>
+      'Debes aceptar el aviso de privacidad para continuar';
 }

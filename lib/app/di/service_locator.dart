@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,7 +7,8 @@ import '../../features/auth/application/use_cases/get_current_session.dart';
 import '../../features/auth/application/use_cases/sign_in.dart';
 import '../../features/auth/application/use_cases/sign_out.dart';
 import '../../features/auth/domain/repositories/auth_repository.dart';
-import '../../features/auth/infrastructure/repositories/fake_auth_repository.dart';
+import '../../features/auth/infrastructure/datasources/secure_token_storage.dart';
+import '../../features/auth/infrastructure/repositories/api_auth_repository.dart';
 import '../../features/auth/presentation/cubits/auth_cubit.dart';
 import '../cubits/settings_cubit.dart';
 
@@ -22,7 +24,16 @@ Future<void> configureDependencies() async {
     () => SettingsCubit(serviceLocator<SharedPreferences>()),
   );
 
-  serviceLocator.registerLazySingleton<AuthRepository>(FakeAuthRepository.new);
+  serviceLocator.registerLazySingleton<SecureTokenStorage>(
+    () => SecureTokenStorage(),
+  );
+
+  serviceLocator.registerLazySingleton<AuthRepository>(
+    () => ApiAuthRepository(
+      client: serviceLocator<Dio>(),
+      storage: serviceLocator<SecureTokenStorage>(),
+    ),
+  );
   serviceLocator.registerLazySingleton(
     () => GetCurrentSession(serviceLocator<AuthRepository>()),
   );

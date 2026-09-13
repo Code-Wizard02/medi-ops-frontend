@@ -37,6 +37,8 @@ class LoginFormWidget extends HookWidget {
       listener: (context, state) {
         if (state is Authenticated) {
           context.go('/home');
+        } else if (state is AccountNotVerified) {
+          context.go('/verify-email', extra: state.email);
         }
       },
       builder: (context, state) {

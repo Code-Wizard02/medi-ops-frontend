@@ -10,6 +10,7 @@ import '../../domain/value_objects/password.dart';
 import '../cubits/register_cubit.dart';
 import '../cubits/register_state.dart';
 import 'auth_text_field.dart';
+import 'privacy_notice_dialog.dart';
 
 class RegisterFormWidget extends HookWidget {
   const RegisterFormWidget({super.key, this.tabSelector});
@@ -99,6 +100,65 @@ class RegisterFormWidget extends HookWidget {
                 prefixIcon: Icons.lock_outline,
                 isPassword: true,
                 validator: (value) => Password(value ?? '').validate(),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FormField<bool>(
+                    initialValue: false,
+                    validator: (value) => value == true ? null : l10n.privacyNoticeRequired,
+                    builder: (state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: state.value,
+                                onChanged: (value) => state.didChange(value),
+                                isError: state.hasError,
+                              ),
+                              GestureDetector(
+                                onTap: () => PrivacyNoticeDialog.show(context),
+                                child: Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: '${l10n.privacyNoticeCheckbox} ',
+                                        style: theme.textTheme.bodyMedium?.copyWith(
+                                          color: colorScheme.onSurfaceVariant,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: l10n.privacyNoticeLink,
+                                        style: theme.textTheme.bodyMedium?.copyWith(
+                                          color: colorScheme.primary,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (state.hasError)
+                            Padding(
+                              padding: const EdgeInsets.only(left: 12.0, top: 4.0),
+                              child: Text(
+                                state.errorText!,
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: colorScheme.error,
+                                ),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
               ),
               if (errorMessage != null) ...[
                 const SizedBox(height: 16),

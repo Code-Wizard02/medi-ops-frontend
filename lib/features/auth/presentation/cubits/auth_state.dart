@@ -39,6 +39,15 @@ final class AuthFailureState extends AuthState {
   List<Object?> get props => [message];
 }
 
+class AccountNotVerified extends AuthState {
+  const AccountNotVerified(this.email);
+
+  final String email;
+
+  @override
+  List<Object?> get props => [email];
+}
+
 final class RegistrationSucceeded extends AuthState {
   const RegistrationSucceeded();
 }
